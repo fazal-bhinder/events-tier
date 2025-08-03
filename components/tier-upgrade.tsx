@@ -47,6 +47,9 @@ export function TierUpgrade() {
 
   const currentTier = processedTier || (user?.unsafeMetadata?.tier as Tier) || 'free'
 
+  
+
+
   const handleTierChange = async (tier: Tier, action: 'upgrade' | 'downgrade') => {
     if (!user) return
 
@@ -158,6 +161,7 @@ export function TierUpgrade() {
         {tiers.map((tier, index) => {
           const isCurrentTier = tier.name === currentTier
           const buttonProps = getButtonContent(tier)
+          const { content, ...restButtonProps } = buttonProps;
 
           return (
             <motion.div
@@ -196,10 +200,10 @@ export function TierUpgrade() {
 
                 <div className="p-6 pt-0">
                   <Button
-                      {...buttonProps}
+                      {...restButtonProps}
                     onClick={buttonProps.onClick}
                   >
-                    {buttonProps.content}
+                    {content}
                   </Button>
                 </div>
               </Card>
